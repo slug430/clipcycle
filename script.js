@@ -1,0 +1,4 @@
+
+const b=document.querySelector('.menu'),n=document.querySelector('.links');
+if(b&&n){b.addEventListener('click',()=>{const o=n.classList.toggle('open');b.setAttribute('aria-expanded',String(o))});n.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{n.classList.remove('open');b.setAttribute('aria-expanded','false')}))}
+document.querySelectorAll('[data-year]').forEach(e=>e.textContent=new Date().getFullYear());
