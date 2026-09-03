@@ -149,7 +149,7 @@ a { color: inherit; }
 }
 
 .hero-grid {
-  display: grid; grid-template-columns: 1.1fr .9fr; gap: 60px; align-items: center;
+  display: grid; grid-template-columns: 1.06fr .94fr; gap: 68px; align-items: center;
   position: relative; z-index: 1;
 }
 
@@ -177,7 +177,7 @@ h1 {
    one word in the brand colour, not as a colour effect. */
 .hero h1 span { color: var(--accent); }
 
-.lead { font-size: 1.17rem; color: var(--muted); max-width: 52ch; text-wrap: pretty; }
+.lead { font-size: 1.14rem; color: var(--muted); max-width: 46ch; text-wrap: pretty; }
 
 .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
 
@@ -229,7 +229,7 @@ h1 {
 }
 
 .preview {
-  height: 240px; margin-top: 12px; border-radius: 18px;
+  height: 276px; margin-top: 12px; border-radius: 18px;
   display: grid; place-items: center;
   color: var(--accent); font-size: 2rem;
   background: linear-gradient(168deg, #3b1e32, #1e1826 55%, #0f0e14);
@@ -305,25 +305,34 @@ h1 {
 .card h3 { margin: 20px 0 8px; font-size: 1.2rem; font-weight: 700; }
 .card p { margin: 0; color: var(--muted); }
 
-/* Numbered because the steps genuinely happen in order. */
-.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; counter-reset: step; }
+/* Numbered because the steps genuinely happen in order — and drawn as a
+   sequence rather than as four more cards. Filled boxes here made this section
+   read as a repeat of the three feature cards above it, so the page went
+   "grid of boxes, grid of boxes" and the reader stopped looking. Open columns
+   under a segmented rule say "four stages of one process" instead. */
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; counter-reset: step; }
 
 /* The rule on top is neutral and the numeral carries the accent. Both in the
    signal colour meant eight pink elements in one section — the discipline
    that makes a single accent work is spending it once per idea, not once per
-   element. */
+   element.
+
+   The column gap breaks the rule into four segments, one per step, so it
+   doubles as a progress bar without anything extra being drawn. It also means
+   the pattern survives every breakpoint: at two columns each row gets its own
+   track, with no counting selectors to keep in sync. */
 .step {
-  background: var(--card);
-  border: 1px solid var(--line);
+  background: none;
+  border: 0;
   border-top: 2px solid var(--line-strong);
-  padding: 26px 22px;
-  border-radius: 0 0 var(--radius) var(--radius);
+  padding: 24px 0 0;
+  border-radius: 0;
 }
 .step::before {
   counter-increment: step; content: "0" counter(step);
   display: block; color: var(--accent);
-  font-size: .8rem; font-weight: 800; letter-spacing: .12em;
-  margin-bottom: 28px;
+  font-size: .78rem; font-weight: 800; letter-spacing: .14em;
+  margin-bottom: 20px;
 }
 .step h3 { margin: 0 0 8px; font-size: 1.08rem; font-weight: 700; }
 .step p { margin: 0; color: var(--muted); font-size: .96rem; }
@@ -356,7 +365,15 @@ h1 {
 
 /* ---------- faq ---------- */
 
-.faq { display: grid; gap: 10px; }
+/* Two columns. Six questions in a single stack was the longest uninterrupted
+   run on the page and the least rewarding to read. `align-items: start` keeps
+   an opened answer from stretching its neighbour into a tall empty box. */
+.faq {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: start;
+  gap: 10px;
+}
 .faq details {
   background: var(--card);
   border: 1px solid var(--line);
@@ -512,7 +529,7 @@ h1 {
   .actions .button { flex: 1 1 100%; }
   .hero::after { width: 460px; height: 460px; right: -200px; top: -200px; }
   h1 { max-width: none; }
-  .trust-grid, .cards, .steps, .contact-grid, .footer-grid { grid-template-columns: 1fr; }
+  .trust-grid, .cards, .steps, .contact-grid, .footer-grid, .faq { grid-template-columns: 1fr; }
   .section { padding: 68px 0; }
   .footer-bottom { flex-direction: column; }
   .plans { grid-template-columns: 1fr; }
