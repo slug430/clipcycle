@@ -260,3 +260,62 @@ h1 { font-size: clamp(3rem, 7.4vw, 5.6rem); line-height: .96; letter-spacing: -.
   .section { padding: 68px 0 }
   .footer-bottom { flex-direction: column }
 }
+
+/* ---------- install dialog ---------- */
+/* A native <dialog>: Escape closes it, focus is trapped, and the backdrop is
+   the browser's own. Reimplementing that in a modal built from divs is how
+   these end up unclosable on a keyboard. */
+
+.sheet {
+  border: 1px solid var(--line-strong);
+  border-radius: 20px;
+  background: var(--surface);
+  color: var(--ink);
+  padding: 0;
+  width: min(100% - 2rem, 30rem);
+  max-height: min(90dvh, 44rem);
+  overflow: auto;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, .65);
+}
+
+.sheet::backdrop { background: rgba(6, 6, 10, .72); backdrop-filter: blur(3px) }
+
+.sheet-body { padding: 1.75rem 1.6rem 1.5rem; position: relative }
+
+.sheet-close {
+  position: absolute; top: .75rem; right: .85rem;
+  width: 2rem; height: 2rem; border-radius: 8px;
+  background: transparent; border: 0; color: var(--muted);
+  font-size: 1.4rem; line-height: 1; cursor: pointer;
+}
+.sheet-close:hover { color: var(--ink); background: var(--raised) }
+
+.sheet h2 { font-size: 1.35rem; letter-spacing: -.02em; margin: 0 2rem 0 0 }
+.sheet-lead { color: var(--muted); margin: .6rem 0 1.4rem }
+
+.sheet h3 {
+  display: flex; align-items: center; gap: .6rem;
+  font-size: .95rem; font-weight: 600; margin: 0 0 .7rem;
+}
+
+.sheet-steps { margin: 0; padding-left: 1.15rem; display: grid; gap: .55rem; color: #b6b7c2 }
+.sheet-steps li::marker { color: var(--pink); font-variant-numeric: tabular-nums }
+
+.sheet-note { color: var(--dim); font-size: .85rem; margin: .85rem 0 0 }
+
+.sheet [data-platform] + [data-platform] {
+  margin-top: 1.5rem; padding-top: 1.4rem; border-top: 1px solid var(--line);
+}
+
+.linkish {
+  background: 0; border: 0; padding: 0; font: inherit;
+  color: #ff85ac; cursor: pointer; text-decoration: underline; text-underline-offset: 3px;
+}
+
+.sheet-actions {
+  display: flex; gap: .6rem; flex-wrap: wrap;
+  margin-top: 1.6rem; padding-top: 1.3rem; border-top: 1px solid var(--line);
+}
+.sheet-actions .button { flex: 1 1 auto; min-height: 46px }
+
+@media (max-width: 420px) { .sheet-body { padding: 1.5rem 1.15rem 1.2rem } }
