@@ -1,6 +1,6 @@
 # ClipCycle website
 
-Public contact: clipcycle.creator@gmail.com
+Public contact: clipadillo.creator@gmail.com
 
 ## Upload to GitHub
 
