@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://getclipadillo.com/sitemap.xml
